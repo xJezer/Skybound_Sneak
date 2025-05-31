@@ -49,6 +49,11 @@ def run_game(screen):
                 if menu.handle_event(event) == "play":
                     in_menu = False
 
+            pygame.mixer.init()
+            pygame.mixer.music.load("musicadefondo.mp3")  # Cambiá al nombre correcto
+            pygame.mixer.music.set_volume(0.5)
+            pygame.mixer.music.play(-1)
+
             menu.draw()
             pygame.display.flip()
             clock.tick(60)
