@@ -14,7 +14,6 @@ def game_loop_logic(game_over, all_sprites_list, platform_general, bg_manager, r
         rat.move(keys, platform_general.platforms_list, bg_manager.over_floor, bg_manager.bg_speed)
         rat.rect.topleft = (rat.x, rat.y)
 
-        # Animación del gato
         if bg_manager.floor_y > 875:
             bg_manager.bg_speed = 2
             cat_visible = True
