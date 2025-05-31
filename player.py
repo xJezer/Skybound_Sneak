@@ -23,7 +23,6 @@ class Player(pygame.sprite.Sprite):
         self.facing_right = True
     
     def move(self, keys, platforms, over_floor, bg_s):
-        # Movimiento horizontal
         self.y += bg_s
         if keys[pygame.K_LEFT]:
             if self.x > 0:
@@ -38,7 +37,6 @@ class Player(pygame.sprite.Sprite):
                 self.image = self.image_right
                 self.facing_right = True
 
-        # Salto
         if not self.is_jumping and keys[pygame.K_SPACE]:
             self.is_jumping = True
             self.speed_y = -self.jump_strength
@@ -54,16 +52,13 @@ class Player(pygame.sprite.Sprite):
                     landed = True
                     break
 
-        # --- LÍNEA CLAVE: Si no está sobre ninguna plataforma ni en el suelo, debe caer ---
         if not landed and self.y < over_floor:
             self.is_jumping = True
 
-        # Aplica gravedad si está saltando
         if self.is_jumping:
             self.y += self.speed_y
             self.speed_y += self.gravity
 
-        # Si cae al suelo
         if self.y >= over_floor:
             self.y = over_floor
             self.is_jumping = False

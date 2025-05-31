@@ -21,10 +21,8 @@ def draw_hp_bar(game_over, enemy_visible, player_rect, enemy_rect, speed_y, jump
         hp_counter -= 1
         speed_y = -jump_strength * 1.5
         is_jumping = True
-    # Dibuja corazones vacíos
     for i in range(3):
         screen.blit(heart_0, (10 + 60 * i, 10))
-    # Dibuja corazones llenos según la vida
     for i in range(hp_counter):
         screen.blit(heart_1, (10 + 60 * i, 10))
     if hp_counter <= 0:
