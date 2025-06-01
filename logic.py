@@ -2,14 +2,19 @@ import pygame
 from config import screen, DIMENSIONS
 from game_over import game_over_screen
 from hp_bar import draw_hp_bar
-def game_loop_logic(game_over, all_sprites_list, platform_general, bg_manager, rat, cat, cat_final_x, cat_final_x2, cat_pos_y, cat_pos_y_actual, cat_visible):
+def game_loop_logic(game_over, all_sprites_list, platform_general, bg_manager, rat, cat, cat_final_x, cat_final_x2, cat_pos_y, cat_pos_y_actual, cat_visible, extra_life_manager):
     if not game_over:
         bg_manager.move()
+
+        for hearth in extra_life_manager.extralife_list:
+            hearth.rect.y += bg_manager.bg_speed
+        
         for platform in platform_general.platforms_list:
             platform.rect.y += bg_manager.bg_speed
         bg_manager.draw()
 
         all_sprites_list.draw(screen)
+        extra_life_manager.extralife_list.draw(screen)
         keys = pygame.key.get_pressed()
         rat.move(keys, platform_general.platforms_list, bg_manager.over_floor, bg_manager.bg_speed)
         rat.rect.topleft = (rat.x, rat.y)
@@ -29,7 +34,7 @@ def game_loop_logic(game_over, all_sprites_list, platform_general, bg_manager, r
         cat.draw(screen, cat_visible)
 
         game_over, rat.speed_y, rat.is_jumping = draw_hp_bar(
-            game_over, cat_visible, rat.rect, cat.rect2, rat.speed_y, rat.jump_strength, rat.is_jumping
+            game_over, cat_visible, rat.rect, cat.rect2, rat.speed_y, rat.jump_strength, rat.is_jumping, extra_life_manager.extralife_list
         )
         return game_over, cat_pos_y, cat_pos_y_actual, cat_visible, rat.speed_y, rat.is_jumping
     else:

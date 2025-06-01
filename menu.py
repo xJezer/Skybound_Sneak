@@ -2,6 +2,7 @@ import pygame, sys
 from init import init_game
 from logic import game_loop_logic
 from config import DIMENSIONS, WHITE
+from corazones import extra_life_manager
 
 class Menu:
     def __init__(self, screen):
@@ -36,7 +37,7 @@ def run_game(screen):
     menu = Menu(screen)
     clock = pygame.time.Clock()
 
-    all_sprites_list, cat_final_x, cat_final_x2, cat_pos_y, cat_pos_y_actual, cat_visible, rat, platform_general, bg_manager, cat = init_game()
+    all_sprites_list, cat_final_x, cat_final_x2, cat_pos_y, cat_pos_y_actual, cat_visible, rat, platform_general, bg_manager, cat, extra_life_manager.extralife_list = init_game()
 
     while True:
         # --- Bucle del menú principal ---
@@ -59,7 +60,7 @@ def run_game(screen):
             clock.tick(60)
 
         # --- Inicialización del juego ---
-        all_sprites_list, cat_final_x, cat_final_x2, cat_pos_y, cat_pos_y_actual, cat_visible, rat, platform_general, bg_manager, cat = init_game()
+        all_sprites_list, cat_final_x, cat_final_x2, cat_pos_y, cat_pos_y_actual, cat_visible, rat, platform_general, bg_manager, cat, extralife_list = init_game()
         game_over = False
         main_menu_button_rect = None
 
@@ -76,7 +77,7 @@ def run_game(screen):
 
             result = game_loop_logic(
                 game_over, all_sprites_list, platform_general, bg_manager, rat, cat,
-                cat_final_x, cat_final_x2, cat_pos_y, cat_pos_y_actual, cat_visible
+                cat_final_x, cat_final_x2, cat_pos_y, cat_pos_y_actual, cat_visible, extra_life_manager
             )
             if len(result) == 7:
                 game_over, cat_pos_y, cat_pos_y_actual, cat_visible, rat.speed_y, rat.is_jumping, main_menu_button_rect = result
