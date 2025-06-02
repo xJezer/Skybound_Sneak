@@ -37,10 +37,9 @@ def run_game(screen):
     menu = Menu(screen)
     clock = pygame.time.Clock()
 
-    all_sprites_list, cat_final_x, cat_final_x2, cat_pos_y, cat_pos_y_actual, cat_visible, rat, platform_general, bg_manager, cat, extra_life_manager.extralife_list = init_game()
+    all_sprites_list, cat_final_x, cat_final_x2, cat_pos_y, cat_pos_y_actual, cat_visible, rat, platform_general, trap_general, bg_manager, cat, extra_life_manager.extralife_list = init_game()
 
     while True:
-        # --- Bucle del menú principal ---
         in_menu = True
         while in_menu:
             for event in pygame.event.get():
@@ -52,19 +51,17 @@ def run_game(screen):
 
             pygame.mixer.init()
             pygame.mixer.music.load("data/musica.mp3")  
-            pygame.mixer.music.set_volume(0.5)
+            pygame.mixer.music.set_volume(0.2)
             pygame.mixer.music.play(-1)
 
             menu.draw()
             pygame.display.flip()
             clock.tick(60)
 
-        # --- Inicialización del juego ---
-        all_sprites_list, cat_final_x, cat_final_x2, cat_pos_y, cat_pos_y_actual, cat_visible, rat, platform_general, bg_manager, cat, extralife_list = init_game()
+        all_sprites_list, cat_final_x, cat_final_x2, cat_pos_y, cat_pos_y_actual, cat_visible, rat, platform_general, trap_general, bg_manager, cat, extra_life_manager.extralife_list = init_game()
         game_over = False
         main_menu_button_rect = None
 
-        # --- Bucle principal del juego ---
         in_game = True
         while in_game:
             for event in pygame.event.get():
@@ -73,10 +70,10 @@ def run_game(screen):
                     sys.exit()
                 if game_over and event.type == pygame.MOUSEBUTTONDOWN:
                     if main_menu_button_rect and main_menu_button_rect.collidepoint(event.pos):
-                        in_game = False  # Sale del juego y vuelve al menú # Sale del juego y vuelve al menú
+                        in_game = False
 
             result = game_loop_logic(
-                game_over, all_sprites_list, platform_general, bg_manager, rat, cat,
+                game_over, all_sprites_list, platform_general, trap_general, bg_manager, rat, cat,
                 cat_final_x, cat_final_x2, cat_pos_y, cat_pos_y_actual, cat_visible, extra_life_manager
             )
             if len(result) == 7:

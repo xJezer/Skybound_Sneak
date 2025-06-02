@@ -11,6 +11,10 @@ class Player(pygame.sprite.Sprite):
         self.image_right = pygame.transform.scale(self.image_right, (75, 60))
         self.image_right.set_colorkey(WHITE)
         self.image_left = pygame.transform.flip(self.image_right, True, False)
+        self.image_right_gold = pygame.image.load("data/rat_invincible.png").convert()
+        self.image_right_gold = pygame.transform.scale(self.image_right_gold, (75, 60))
+        self.image_right_gold.set_colorkey(WHITE)
+        self.image_left_gold = pygame.transform.flip(self.image_right_gold, True, False)
         self.image = self.image_right
         self.rect = self.image.get_rect()
         self.x = 700
@@ -21,6 +25,7 @@ class Player(pygame.sprite.Sprite):
         self.jump_strength = 20
         self.speed_y = 0
         self.facing_right = True
+        self.status_effect = {}
     
     def move(self, keys, platforms, over_floor, bg_s):
         self.y += bg_s
@@ -65,6 +70,18 @@ class Player(pygame.sprite.Sprite):
             self.speed_y = 0
 
         self.rect.topleft = (self.x, self.y)
+
+    def update_effects(self):
+        if "invincible" in self.status_effect:
+            if self.facing_right:
+                self.image = self.image_right_gold
+            else:
+                self.image = self.image_left_gold
+        else:
+            if self.facing_right:
+                self.image = self.image_right
+            else:
+                self.image = self.image_left
 
 rat = Player()
 
