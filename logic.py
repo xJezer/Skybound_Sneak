@@ -8,7 +8,6 @@ def game_loop_logic(game_over, all_sprites_list, platform_general, trap_general,
 
         for hearth in extra_life_manager.extralife_list:
             hearth.rect.y += bg_manager.bg_speed
-        
         for platform in platform_general.platforms_list:
             platform.rect.y += bg_manager.bg_speed
         for trap in trap_general.trap_list:

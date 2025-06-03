@@ -2,7 +2,7 @@ import pygame, sys
 from init import init_game
 from logic import game_loop_logic
 from config import DIMENSIONS, WHITE
-from corazones import extra_life_manager
+from extralife import extra_life_manager
 
 class Menu:
     def __init__(self, screen):

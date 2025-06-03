@@ -5,7 +5,7 @@ from platforms import platform_general
 from trap import trap_general, trap_properties
 from player import rat
 from enemy import cat
-from corazones import extra_life_manager
+from extralife import extra_life_manager
 
 
 def init_game():

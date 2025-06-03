@@ -28,6 +28,7 @@ def draw_hp_bar(game_over, enemy_visible, player_rect, player, enemy_rect, trap_
     for trap in trap_list:
         if player_rect.colliderect(trap):
             trap_collision = True
+
     if not "invincible" in player.status_effect:
         if enemy_visible and player_rect.colliderect(enemy_rect):
             hp_counter -= 1

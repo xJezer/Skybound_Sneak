@@ -12,8 +12,8 @@ class ExtraLife(pygame.sprite.Sprite):
 class ExtraLifeManager:
     def __init__(self):
         self.extralife_list = pygame.sprite.Group()
-        self.start_y = 1000
-        self.spacing_y = 500
+        self.start_y = 2000
+        self.spacing_y = 1000
     
     def procedural_generation(self, height, platform_list):
         self.extralife_list.empty()

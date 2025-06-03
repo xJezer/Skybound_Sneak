@@ -18,7 +18,7 @@ class TrapManager:
         self.trap_list.empty()
         for platform in plat_list:
             trap = Trap()
-            generation_number = random.randrange(1, 5)
+            generation_number = random.randrange(1, 10)
             if generation_number == 1:
                 trap_y = platform.rect.top - 40
                 trap_x = platform.rect.x + 125
